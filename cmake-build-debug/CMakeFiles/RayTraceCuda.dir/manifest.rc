@@ -1,0 +1,2 @@
+#pragma code_page(65001)
+1 /* CREATEPROCESS_MANIFEST_RESOURCE_ID */ 24 /* RT_MANIFEST */ "E:/Course_USTC/GPU_Pall_Compute/RayTraceCuda/cmake-build-debug/CMakeFiles/RayTraceCuda.dir/embed.manifest"
