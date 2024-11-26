@@ -8,31 +8,24 @@
 
 Film::Film(int width, int height):width(width),height(height)
 {
-    buffer = new unsigned char[width*height*3];
+    size_t buffer_size = 3 * width * height * sizeof(unsigned char); // 每个像素 3 个通道
+    cudaError_t err = cudaMallocManaged(&buffer, buffer_size);
+    if (err != cudaSuccess) {
+        std::cerr << "Failed to allocate unified memory for Film buffer: "
+                  << cudaGetErrorString(err) << std::endl;
+        buffer = nullptr;
+        exit(EXIT_FAILURE);
+    }
 
 
 }
 
 void Film::write_color(int x, int y, color& pixel_color)
 {
-    auto r = pixel_color.x();
-    auto g = pixel_color.y();
-    auto b = pixel_color.z();
-
-    r = color_linear_to_gamma(r);
-    g = color_linear_to_gamma(g);
-    b = color_linear_to_gamma(b);
-
-    static const Interval interv{ 0.0f,0.9f };
-
-    unsigned char uc_r = unsigned char(255.999 * interv.clamp(r));
-    unsigned char uc_g = unsigned char(255.999 * interv.clamp(g));
-    unsigned char uc_b = unsigned char(255.999 * interv.clamp(b));
-    int idx = (y * width + x) * 3;
-
-    buffer[idx] = uc_r;
-    buffer[idx + 1] = uc_g;
-    buffer[idx + 2] = uc_b;
+    int index = (y * width + x) * 3;
+    buffer[index]     = static_cast<unsigned char>(255.999f * pixel_color.x());
+    buffer[index + 1] = static_cast<unsigned char>(255.999f * pixel_color.y());
+    buffer[index + 2] = static_cast<unsigned char>(255.999f * pixel_color.z());
 }
 
 void Film::save_as_png(std::string filename)
@@ -44,4 +37,8 @@ void Film::save_as_png(std::string filename)
     fclose(fp);
     std::clog << "\rSave File in " << filename << "\n";
 
+}
+
+unsigned char * Film::get_data() {
+    return buffer;
 }

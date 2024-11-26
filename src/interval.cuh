@@ -8,36 +8,36 @@
 
 
 #include <limits>
-const float infinity = std::numeric_limits<float>::infinity();
+
 
 class Interval {
 public:
     float min, max;
+    const float infinity = std::numeric_limits<float>::infinity();
+    __host__ __device__ Interval() :min(-infinity), max(infinity) {};
 
-    Interval() :min(-infinity), max(infinity) {};
+    __host__ __device__ Interval(float min, float max) :min(min), max(max) {};
 
-    Interval(float min, float max) :min(min), max(max) {};
-
-    float size()const {
+    __host__ __device__ float size()const {
         return max - min;
     }
 
-    bool contains(float x)const {
+    __host__ __device__ bool contains(float x)const {
         return min <= x && x <= max;
     }
 
-    bool surrounds(float x)const {
+    __host__ __device__ bool surrounds(float x)const {
         return min < x && x < max;
     }
 
-    float clamp(float x) const
+    __host__ __device__ float clamp(float x) const
     {
         if (x < min)return min;
         if (x > max)return max;
         return x;
     }
 
-    static const Interval empty, universe;
+    // static const Interval empty, universe;
 };
 
 

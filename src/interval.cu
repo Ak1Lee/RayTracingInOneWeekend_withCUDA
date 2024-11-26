@@ -5,5 +5,5 @@
 #include "interval.cuh"
 
 
-const Interval Interval::empty = Interval(+infinity, -infinity);
-const Interval Interval::universe = Interval(-infinity, +infinity);
+// const Interval Interval::empty = Interval(+infinity, -infinity);
+// const Interval Interval::universe = Interval(-infinity, +infinity);

@@ -105,6 +105,30 @@ build CMakeFiles\RayTraceCuda.dir\src\interval.cu.obj: CUDA_COMPILER__RayTraceCu
   TARGET_COMPILE_PDB = CMakeFiles\RayTraceCuda.dir\
   TARGET_PDB = RayTraceCuda.pdb
 
+build CMakeFiles\RayTraceCuda.dir\src\Hittable.cu.obj: CUDA_COMPILER__RayTraceCuda_unscanned_Debug E$:\Course_USTC\GPU_Pall_Compute\RayTraceCuda\src\Hittable.cu || cmake_object_order_depends_target_RayTraceCuda
+  DEP_FILE = CMakeFiles\RayTraceCuda.dir\src\Hittable.cu.obj.d
+  FLAGS = -D_WINDOWS -Xcompiler=" /EHsc" -Xcompiler=" -Ob0 -Od /RTC1" -std=c++20 "--generate-code=arch=compute_52,code=[compute_52,sm_52]" -Xcompiler=-MDd -Xcompiler=-Zi
+  OBJECT_DIR = CMakeFiles\RayTraceCuda.dir
+  OBJECT_FILE_DIR = CMakeFiles\RayTraceCuda.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\RayTraceCuda.dir\
+  TARGET_PDB = RayTraceCuda.pdb
+
+build CMakeFiles\RayTraceCuda.dir\src\Sphere.cu.obj: CUDA_COMPILER__RayTraceCuda_unscanned_Debug E$:\Course_USTC\GPU_Pall_Compute\RayTraceCuda\src\Sphere.cu || cmake_object_order_depends_target_RayTraceCuda
+  DEP_FILE = CMakeFiles\RayTraceCuda.dir\src\Sphere.cu.obj.d
+  FLAGS = -D_WINDOWS -Xcompiler=" /EHsc" -Xcompiler=" -Ob0 -Od /RTC1" -std=c++20 "--generate-code=arch=compute_52,code=[compute_52,sm_52]" -Xcompiler=-MDd -Xcompiler=-Zi
+  OBJECT_DIR = CMakeFiles\RayTraceCuda.dir
+  OBJECT_FILE_DIR = CMakeFiles\RayTraceCuda.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\RayTraceCuda.dir\
+  TARGET_PDB = RayTraceCuda.pdb
+
+build CMakeFiles\RayTraceCuda.dir\src\Hittable_list.cu.obj: CUDA_COMPILER__RayTraceCuda_unscanned_Debug E$:\Course_USTC\GPU_Pall_Compute\RayTraceCuda\src\Hittable_list.cu || cmake_object_order_depends_target_RayTraceCuda
+  DEP_FILE = CMakeFiles\RayTraceCuda.dir\src\Hittable_list.cu.obj.d
+  FLAGS = -D_WINDOWS -Xcompiler=" /EHsc" -Xcompiler=" -Ob0 -Od /RTC1" -std=c++20 "--generate-code=arch=compute_52,code=[compute_52,sm_52]" -Xcompiler=-MDd -Xcompiler=-Zi
+  OBJECT_DIR = CMakeFiles\RayTraceCuda.dir
+  OBJECT_FILE_DIR = CMakeFiles\RayTraceCuda.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\RayTraceCuda.dir\
+  TARGET_PDB = RayTraceCuda.pdb
+
 
 # =============================================================================
 # Device Link build statements for EXECUTABLE target RayTraceCuda
@@ -113,7 +137,7 @@ build CMakeFiles\RayTraceCuda.dir\src\interval.cu.obj: CUDA_COMPILER__RayTraceCu
 #############################################
 # Link the executable CMakeFiles\RayTraceCuda.dir\cmake_device_link.obj
 
-build CMakeFiles\RayTraceCuda.dir\cmake_device_link.obj: CUDA_EXECUTABLE_DEVICE_LINKER__RayTraceCuda_Debug CMakeFiles\RayTraceCuda.dir\src\main.cu.obj CMakeFiles\RayTraceCuda.dir\src\vec3.cu.obj CMakeFiles\RayTraceCuda.dir\src\color.cu.obj CMakeFiles\RayTraceCuda.dir\src\ray.cu.obj CMakeFiles\RayTraceCuda.dir\src\camera.cu.obj CMakeFiles\RayTraceCuda.dir\src\film.cu.obj CMakeFiles\RayTraceCuda.dir\src\interval.cu.obj
+build CMakeFiles\RayTraceCuda.dir\cmake_device_link.obj: CUDA_EXECUTABLE_DEVICE_LINKER__RayTraceCuda_Debug CMakeFiles\RayTraceCuda.dir\src\main.cu.obj CMakeFiles\RayTraceCuda.dir\src\vec3.cu.obj CMakeFiles\RayTraceCuda.dir\src\color.cu.obj CMakeFiles\RayTraceCuda.dir\src\ray.cu.obj CMakeFiles\RayTraceCuda.dir\src\camera.cu.obj CMakeFiles\RayTraceCuda.dir\src\film.cu.obj CMakeFiles\RayTraceCuda.dir\src\interval.cu.obj CMakeFiles\RayTraceCuda.dir\src\Hittable.cu.obj CMakeFiles\RayTraceCuda.dir\src\Sphere.cu.obj CMakeFiles\RayTraceCuda.dir\src\Hittable_list.cu.obj
   LANGUAGE_COMPILE_FLAGS = -D_WINDOWS -Xcompiler=" /EHsc" -Xcompiler=" -Ob0 -Od /RTC1" "--generate-code=arch=compute_52,code=[compute_52,sm_52]" -Xcompiler=-MDd -Xcompiler=-Zi
   LINK_LIBRARIES = cudadevrt.lib cudart_static.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
   OBJECT_DIR = CMakeFiles\RayTraceCuda.dir
@@ -129,7 +153,7 @@ build CMakeFiles\RayTraceCuda.dir\cmake_device_link.obj: CUDA_EXECUTABLE_DEVICE_
 #############################################
 # Link the executable RayTraceCuda.exe
 
-build RayTraceCuda.exe: CUDA_EXECUTABLE_LINKER__RayTraceCuda_Debug CMakeFiles\RayTraceCuda.dir\src\main.cu.obj CMakeFiles\RayTraceCuda.dir\src\vec3.cu.obj CMakeFiles\RayTraceCuda.dir\src\color.cu.obj CMakeFiles\RayTraceCuda.dir\src\ray.cu.obj CMakeFiles\RayTraceCuda.dir\src\camera.cu.obj CMakeFiles\RayTraceCuda.dir\src\film.cu.obj CMakeFiles\RayTraceCuda.dir\src\interval.cu.obj CMakeFiles\RayTraceCuda.dir\cmake_device_link.obj
+build RayTraceCuda.exe: CUDA_EXECUTABLE_LINKER__RayTraceCuda_Debug CMakeFiles\RayTraceCuda.dir\src\main.cu.obj CMakeFiles\RayTraceCuda.dir\src\vec3.cu.obj CMakeFiles\RayTraceCuda.dir\src\color.cu.obj CMakeFiles\RayTraceCuda.dir\src\ray.cu.obj CMakeFiles\RayTraceCuda.dir\src\camera.cu.obj CMakeFiles\RayTraceCuda.dir\src\film.cu.obj CMakeFiles\RayTraceCuda.dir\src\interval.cu.obj CMakeFiles\RayTraceCuda.dir\src\Hittable.cu.obj CMakeFiles\RayTraceCuda.dir\src\Sphere.cu.obj CMakeFiles\RayTraceCuda.dir\src\Hittable_list.cu.obj CMakeFiles\RayTraceCuda.dir\cmake_device_link.obj
   FLAGS = -D_WINDOWS -Xcompiler=" /EHsc" -Xcompiler=" -Ob0 -Od /RTC1" "--generate-code=arch=compute_52,code=[compute_52,sm_52]" -Xcompiler=-MDd -Xcompiler=-Zi
   LINK_FLAGS = /debug /INCREMENTAL
   LINK_LIBRARIES = cudadevrt.lib  cudart_static.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib

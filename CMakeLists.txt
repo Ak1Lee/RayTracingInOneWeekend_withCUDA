@@ -17,6 +17,12 @@ add_executable(RayTraceCuda src/main.cu
         src/interval.cu
         src/interval.cuh
         src/randf.cuh
+        src/Hittable.cu
+        src/Hittable.cuh
+        src/Sphere.cu
+        src/Sphere.cuh
+        src/Hittable_list.cu
+        src/Hittable_list.cuh
 )
 
 set_target_properties(RayTraceCuda PROPERTIES
