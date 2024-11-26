@@ -11,26 +11,28 @@
 #include "randf.cuh"
 
 
+struct camera_to_renderer_info {
+	vec3 pixel00_loc,center,pixel_delta_u,pixel_delta_v;
+	camera_to_renderer_info(vec3 pixel00_loc, vec3, vec3 pixel_delta_u, vec3 pixel_delta_v) {};
+	camera_to_renderer_info() {};
+};
+
 class Camera
 {
 public:
 
-	Camera(int image_width, int image_height) :image_width(image_width), image_height(image_height), film(image_width, image_height) {};
-	~Camera();
+	Camera(int image_width, int image_height);
+	~Camera(){};
 	float aspect_ratio = 1.f;
 	int image_width = 100;
 	int image_height = 100;
 	int samples_per_pixel = 10;   // Count of random samples for each pixel
-
 	double vfov_degree = 90;  // Vertical view angle (field of view)
-
 	point3 lookfrom = point3(0, 0, 0);
 	point3 lookat = point3(0, 0, -1);
 	vec3 vup = vec3(0, 1, 0);             //"up"dir
-
 	float defocus_angle = 0.f;
 	float focus_dist = 10;
-
 
 	// void render(const Hittable_list& world);
 
@@ -61,6 +63,10 @@ public:
 
 	void GeneratePNG(std::string filename);
 
+	camera_to_renderer_info* get_render_info() {
+		return &renderer_info;
+	};
+
 private:
 
 	Film film;
@@ -75,9 +81,11 @@ private:
 	vec3   defocus_disk_u;       // Defocus disk horizontal radius
 	vec3   defocus_disk_v;       // Defocus disk vertical radius
 
+	camera_to_renderer_info renderer_info;
 
 
 	void initialize();
+
 	point3 defocus_disk_sample() const {
 
 		// TODO

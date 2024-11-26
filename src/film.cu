@@ -18,6 +18,7 @@ Film::Film(int width, int height):width(width),height(height)
     }
 
 
+
 }
 
 void Film::write_color(int x, int y, color& pixel_color)
