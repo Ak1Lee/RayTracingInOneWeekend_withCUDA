@@ -19,7 +19,7 @@ class Hittable_list
 public:
     // std::vector<shared_ptr<Hittable>> objects;
 
-    static const int max_objects = 20;
+    static const int max_objects = 300;
     Hittable** objects;
     int num_objects = 0;
 

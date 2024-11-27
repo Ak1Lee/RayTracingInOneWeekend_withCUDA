@@ -23,15 +23,15 @@ public:
 
 	Camera(int image_width, int image_height);
 	~Camera(){};
-	float aspect_ratio = 1.f;
-	int image_width = 100;
-	int image_height = 100;
+	float aspect_ratio = 16.f/9.f;
+	int image_width = 1200;
+	int image_height = 500;
 	int samples_per_pixel = 10;   // Count of random samples for each pixel
-	double vfov_degree = 90;  // Vertical view angle (field of view)
-	point3 lookfrom = point3(0, 0, 0);
-	point3 lookat = point3(0, 0, -1);
+	double vfov_degree = 20;  // Vertical view angle (field of view)
+	point3 lookfrom = point3(13, 2, 3);
+	point3 lookat = point3(0, 0, 0);
 	vec3 vup = vec3(0, 1, 0);             //"up"dir
-	float defocus_angle = 0.f;
+	float defocus_angle = 0.6f;
 	float focus_dist = 10;
 
 	// void render(const Hittable_list& world);

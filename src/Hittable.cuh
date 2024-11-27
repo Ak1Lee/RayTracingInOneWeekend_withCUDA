@@ -7,6 +7,7 @@
 
 #include "ray.cuh"
 #include "interval.cuh"
+#include "material.cuh"
 
 
 struct Hit_info
@@ -14,7 +15,7 @@ struct Hit_info
     __host__ __device__ Hit_info()=default;
     point3 p;
     vec3 normal;
-    // std::shared_ptr<Material> mat;
+    Material *mat;
     vec3 color;
     float t;
     bool front_face;

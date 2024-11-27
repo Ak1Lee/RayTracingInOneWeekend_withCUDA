@@ -16,6 +16,12 @@ Film::Film(int width, int height):width(width),height(height)
         buffer = nullptr;
         exit(EXIT_FAILURE);
     }
+    cudaError_t sync_err = cudaDeviceSynchronize();  // 检查设备同步错误
+    if (sync_err != cudaSuccess) {
+        std::cerr << "CUDA error after memory allocation: "
+                  << cudaGetErrorString(sync_err) << std::endl;
+        exit(EXIT_FAILURE);
+    }
 
 
 

@@ -23,6 +23,8 @@ add_executable(RayTraceCuda src/main.cu
         src/Sphere.cuh
         src/Hittable_list.cu
         src/Hittable_list.cuh
+        src/material.cu
+        src/material.cuh
 )
 
 set_target_properties(RayTraceCuda PROPERTIES

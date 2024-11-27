@@ -7,6 +7,9 @@
 
 #include <iostream>
 #include <cmath>
+#include <curand_kernel.h>
+
+#include "randf.cuh"
 
 
 class vec3
@@ -19,7 +22,7 @@ public:
 
 	__host__ __device__ static vec3 random();
 
-	__host__ __device__ static vec3 random(float min, float max);
+	__host__ __device__ static vec3 random(float min, float max, curandState* state = nullptr);
 
 
 	__host__ __device__ float x()const {
@@ -85,7 +88,12 @@ public:
 		e[2] *= t;
 		return *this;
 	}
-
+	__host__ __device__ vec3& operator*=(vec3& other) {
+		e[0] *= other.e[0];
+		e[1] *= other.e[1];
+		e[2] *= other.e[2];
+		return *this;
+	}
 	__host__ __device__ vec3& operator/=(float t) {
 		return *this *= 1 / t;
 	}
@@ -166,20 +174,28 @@ __host__ __device__ inline vec3 unit_vector(const vec3& v) {
 	return v / v.length();
 }
 
-__host__ __device__ inline vec3 random_unit_vector() {
-	while (true)
-	{
-		auto p = vec3::random(-1, 1);
-		auto lensq = p.length_squared();
-		if (1e-45 < lensq&&lensq <= 1)
-			return p / sqrt(lensq);
+__host__ __device__ inline vec3 random_unit_vector(curandState* state = nullptr) {
+	float theta, phi;
+	float M_PI = 3.14159f;
+#ifdef __CUDA_ARCH__
+	theta = random_float(0, 2 * M_PI, state);
+	phi = random_float(0, M_PI, state);
+#else
 
-	}
+	theta = random_float(0, 2 * M_PI);
+	phi = random_float(0, M_PI);
+#endif
+
+	float x = sin(phi) * cos(theta);
+	float y = sin(phi) * sin(theta);
+	float z = cos(phi);
+
+	return vec3(x, y, z);
 }
 
-__host__ __device__ inline vec3 random_on_hemisphere(const vec3& normal) {
-	vec3 on_unit_sphere = random_unit_vector();
-	if (dot(on_unit_sphere, normal) > 0.0) // In the same hemisphere as the normal
+__host__ __device__ inline vec3 random_on_hemisphere(const vec3& normal,curandState* state = nullptr) {
+	vec3 on_unit_sphere = random_unit_vector(state);
+	if (dot(on_unit_sphere, normal) > 0.f) // In the same hemisphere as the normal
 		return on_unit_sphere;
 	else
 		return -on_unit_sphere;

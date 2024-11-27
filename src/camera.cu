@@ -39,7 +39,7 @@ void Camera::initialize()
     //auto viewport_u = vec3(viewport_width, 0.f, 0.f);
     //auto viewport_v = vec3(0.f, -viewport_height, 0.f);
 
-    auto viewport_u = viewport_width * u;    // Vector across viewport horizontal edge
+    vec3 viewport_u = viewport_width * u;    // Vector across viewport horizontal edge
     vec3 viewport_v = viewport_height * -v;
 
     pixel_delta_u = viewport_u / image_width;
@@ -52,7 +52,13 @@ void Camera::initialize()
 
 
     // Calculate the camera defocus disk basis vectors.
-    auto defocus_radius = focus_dist * std::tan((defocus_angle / 2) * (3.1415926f / 180.0));
+    auto defocus_radius = focus_dist * std::tan((defocus_angle / 2) * (3.1415926f / 180.0f));
     defocus_disk_u = u * defocus_radius;
     defocus_disk_v = v * defocus_radius;
+
+    printf("pixel00_loc: %f,%f,%f\n", pixel00_loc.x(),pixel00_loc.y(),pixel00_loc.z());
+    printf("viewport_u : %f,%f,%f\n", viewport_u.x(),viewport_u.y(),viewport_u.z());
+    printf("viewport_v : %f,%f,%f\n", viewport_v.x(),viewport_v.y(),viewport_v.z());
+    printf("lookfrom : %f,%f,%f\n", lookfrom.x(),lookfrom.y(),lookfrom.z());
+    printf("lookat : %f,%f,%f\n", lookat.x(),lookat.y(),lookat.z());
 }

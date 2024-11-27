@@ -4,6 +4,8 @@
 
 #include "vec3.cuh"
 
+#include "randf.cuh"
+
 // #include "util/randf.h"
 __host__ __device__ vec3 vec3::random()
 {
@@ -11,9 +13,16 @@ __host__ __device__ vec3 vec3::random()
     return vec3();
 }
 
-__host__ __device__ vec3 vec3::random(float min, float max)
-{
-    // return vec3(random_float(min,max), random_float(min, max), random_float(min, max));
-    return vec3();
-
+vec3 vec3::random(float min, float max, curandState* state) {
+#ifdef __CUDA_ARCH__
+    return vec3(
+        random_float(min, max, state),
+        random_float(min, max, state),
+        random_float(min, max, state));
+#else
+    return vec3(
+        random_float(min, max),
+        random_float(min, max),
+        random_float(min, max));
+#endif
 }
