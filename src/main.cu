@@ -80,7 +80,13 @@ __device__ color ray_color_sample_multiple(const Ray& r, Hittable_list& world, c
     auto a = 0.5f * (unit_direction.y() + 1.0f);
     return accumulated_attenuation * ((1.0f - a) * color(1.0f, 1.0f, 1.0f) + a * color(0.5f, 0.7f, 1.0f));
 }
+__host__ __device__ float linear_to_gamma(float linear_component)
+{
+    if (linear_component > 0)
+        return sqrt(linear_component);
 
+    return 0;
+}
 __global__ void render_test(unsigned char *buffer, int max_x, int max_y, camera_to_renderer_info renderer_info,Hittable_list& world,curandState* d_state) {
     int i = threadIdx.x + blockIdx.x * blockDim.x;
     int j = threadIdx.y + blockIdx.y * blockDim.y;
@@ -113,9 +119,13 @@ __global__ void render_test(unsigned char *buffer, int max_x, int max_y, camera_
     pixel_color /= multisample;
 
 
-
     // printf("kernel get j:%d, i:%d, color_r:%f, color_g:%f,color_b:%f \n",j,i,pixel_color.x(),pixel_color.y(),pixel_color.z());
     Interval interv{ 0.0f,0.95f };
+
+    // Apply a linear to gamma transform for gamma 2
+    pixel_color.e[0] = linear_to_gamma(pixel_color.x());
+    pixel_color.e[1] = linear_to_gamma(pixel_color.y());
+    pixel_color.e[2] = linear_to_gamma(pixel_color.z());
 
     unsigned char uc_r = unsigned char(255.999 * interv.clamp(pixel_color.x()));
     unsigned char uc_g = unsigned char(255.999 * interv.clamp(pixel_color.y()));

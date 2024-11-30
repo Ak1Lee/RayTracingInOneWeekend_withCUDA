@@ -27,3 +27,6 @@
 6	7397	7546627793974609	CMakeFiles/RayTraceCuda.dir/src/main.cu.obj	687f3863e6340e39
 7400	8981	7546627867915294	CMakeFiles/RayTraceCuda.dir/cmake_device_link.obj	70900dddb7ddeaa9
 8981	9254	7546627883725182	RayTraceCuda.exe	fb86323b8901712d
+6	7708	7546639133279768	CMakeFiles/RayTraceCuda.dir/src/main.cu.obj	687f3863e6340e39
+7714	9364	7546639210356225	CMakeFiles/RayTraceCuda.dir/cmake_device_link.obj	70900dddb7ddeaa9
+9364	9584	7546639226848776	RayTraceCuda.exe	fb86323b8901712d
